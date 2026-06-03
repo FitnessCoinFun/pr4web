@@ -390,6 +390,7 @@ export const cases: Case[] = [
         title: 'Единый трекер — 1 строка на все сайты',
         description:
           'JS-тег ~4 КБ: `<script src="https://y-r-a.ru/t/tracker.js?t=ТОКЕН" defer></script>`. Один токен привязывает все сайты к аккаунту клиента. Асинхронно, не блокирует загрузку. Дедупликация: повторный визит на ту же страницу в 30 сек не записывается. Поддержка SPA: перехват history.pushState + popstate.',
+        image: '/cases/cross-tracker/tag.jpg',
       },
       {
         num:   '03',
@@ -402,6 +403,7 @@ export const cases: Case[] = [
         title: 'Дашборд journeys.php',
         description:
           'Показывает только пользователей, посетивших несколько сайтов. Столбцы: первый сайт, utm_source, цепочка переходов, последний источник, дней между касаниями. Пример: [Посёлок Сосновый] (yandex/cpc) → [Корпсайт] (прямой) — прямое доказательство работы рекламы.',
+        image: '/cases/cross-tracker/journeys.jpg',
       },
       {
         num:   '05',
