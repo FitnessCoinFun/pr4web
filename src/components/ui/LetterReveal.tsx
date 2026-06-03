@@ -37,8 +37,9 @@ export function LetterReveal({
             ) : (
               <motion.span
                 key={i}
+                className="letter-reveal-char"
                 style={{ display: 'inline-block', cursor: 'default' }}
-                whileHover={{ y: -4, color: '#6366f1', transition: { duration: 0.12 } }}
+                whileHover={{ y: -4, transition: { duration: 0.12 } }}
               >
                 {char}
               </motion.span>

@@ -206,6 +206,14 @@ html.dark select.form-input     { color-scheme: dark; }
   letter-spacing: -0.025em;
 }
 
+/* ─── LetterReveal hover color (CSS управляет цветом, чтобы тема всегда работала) ─── */
+.letter-reveal-char {
+  transition: color 0.12s ease;
+}
+.letter-reveal-char:hover {
+  color: #6366f1;
+}
+
 /* ─── Focus-visible (20) ─── */
 *:focus-visible {
   outline:        2px solid #6366f1;

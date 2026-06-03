@@ -3,3 +3,4 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://pr4web.ru/sitemap.xml
+Host: pr4web.ru
