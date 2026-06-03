@@ -159,7 +159,7 @@ export function Hero() {
           {DARK_IMAGES.map((src, i) => (
             <motion.div
               key={`d-${src}`}
-              className="absolute inset-0"
+              className="absolute inset-0 hero-bg-left-img"
               initial={false}
               animate={{ opacity: isDark && i === leftIdx ? 1 : 0 }}
               transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
@@ -171,7 +171,7 @@ export function Hero() {
           {LIGHT_IMAGES.map((src, i) => (
             <motion.div
               key={`l-${src}`}
-              className="absolute inset-0"
+              className="absolute inset-0 hero-bg-left-img"
               initial={false}
               animate={{ opacity: !isDark && i === lightSafe ? 1 : 0 }}
               transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}

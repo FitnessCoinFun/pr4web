@@ -102,7 +102,7 @@ export function Navigation() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <ThemeToggle className="hidden md:flex" />
+            <ThemeToggle className="flex" />
             <button
               onClick={openContactModal}
               aria-haspopup="dialog"
@@ -157,14 +157,13 @@ export function Navigation() {
                   {link.label}
                 </button>
               ))}
-              <div className="pt-2 border-t border-white/5 flex items-center justify-between">
+              <div className="pt-2 border-t border-white/5">
                 <button
                   onClick={() => { openContactModal(); setMobileOpen(false) }}
-                  className="flex-1 mr-3 py-3 rounded-xl bg-indigo-600 text-white text-sm font-semibold text-center hover:bg-indigo-500 transition-all cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-indigo-600 text-white text-sm font-semibold text-center hover:bg-indigo-500 transition-all cursor-pointer"
                 >
                   Обсудить проект
                 </button>
-                <ThemeToggle />
               </div>
             </div>
           </motion.div>

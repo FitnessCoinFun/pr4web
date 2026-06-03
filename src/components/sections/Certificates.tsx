@@ -173,9 +173,21 @@ export function Certificates() {
         </p>
       </motion.div>
 
-      {/* Лента — фейд по краям через mask */}
+      {/* Мобиле: скролл пальцем */}
       <div
-        className="relative overflow-hidden"
+        className="sm:hidden overflow-x-auto pb-4 px-4"
+        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+      >
+        <div className="flex gap-4" style={{ width: 'max-content' }}>
+          {certs.map((cert) => (
+            <CertCard key={cert.id} cert={cert} onClick={() => setLightbox(cert)} />
+          ))}
+        </div>
+      </div>
+
+      {/* Десктоп: автоскролл-лента с фейдом по краям */}
+      <div
+        className="hidden sm:block relative overflow-hidden"
         style={{
           maskImage:       'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
@@ -206,10 +218,19 @@ export function Certificates() {
         initial={{ opacity: 0 }}
         animate={headIn ? { opacity: 1 } : {}}
         transition={{ delay: 0.4, duration: 0.4 }}
-        className="text-center text-xs mt-8 font-mono"
+        className="text-center text-xs mt-8 font-mono sm:block hidden"
         style={{ color: 'var(--muted)', opacity: 0.5 }}
       >
         {certs.length} сертификатов · наведите для паузы · кликните для просмотра
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={headIn ? { opacity: 1 } : {}}
+        transition={{ delay: 0.4, duration: 0.4 }}
+        className="text-center text-xs mt-4 font-mono sm:hidden"
+        style={{ color: 'var(--muted)', opacity: 0.5 }}
+      >
+        {certs.length} сертификатов · листайте пальцем · нажмите для просмотра
       </motion.p>
 
       {/* Lightbox */}

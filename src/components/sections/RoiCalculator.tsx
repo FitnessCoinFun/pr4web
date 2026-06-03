@@ -264,17 +264,6 @@ export function RoiCalculator() {
               format={v => fmtMoney(v)}
               onChange={setCheck} />
 
-            {/* Методология */}
-            <div className="rounded-xl p-4 text-xs leading-relaxed space-y-1"
-              style={{ backgroundColor: 'var(--subtle)', color: 'var(--muted)' }}>
-              <p className="font-semibold" style={{ color: 'var(--page-fg)' }}>На чём основан расчёт</p>
-              <p>— Снижение CPC на 35% — медианный результат чистки площадок и минус-слов</p>
-              <p>— Рост конверсии на 40% — медианный результат аудита лендинга и A/B тестов</p>
-              <p>— Разгон 6 месяцев отражает реальную скорость накопления статистики</p>
-              <p className="mt-2 pt-2 border-t" style={{ borderColor: 'var(--card-border)' }}>
-                Медианные значения по проектам 2022-2025. Результат зависит от ниши и стартовых показателей.
-              </p>
-            </div>
           </div>
 
           {/* ── Правая колонка: результаты ── */}
@@ -353,6 +342,18 @@ export function RoiCalculator() {
             >
               Хочу такие результаты — обсудить проект
             </button>
+
+            {/* Методология */}
+            <div className="rounded-xl p-4 text-xs leading-relaxed space-y-1"
+              style={{ backgroundColor: 'var(--subtle)', color: 'var(--muted)' }}>
+              <p className="font-semibold" style={{ color: 'var(--page-fg)' }}>На чём основан расчёт</p>
+              <p>— Снижение CPC на 35% — медианный результат чистки площадок и минус-слов</p>
+              <p>— Рост конверсии на 40% — медианный результат аудита лендинга и A/B тестов</p>
+              <p>— Разгон 6 месяцев отражает реальную скорость накопления статистики</p>
+              <p className="mt-2 pt-2 border-t" style={{ borderColor: 'var(--card-border)' }}>
+                Медианные значения по проектам 2022-2025. Результат зависит от ниши и стартовых показателей.
+              </p>
+            </div>
           </div>
 
         </motion.div>
