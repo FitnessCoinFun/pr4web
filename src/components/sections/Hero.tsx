@@ -92,9 +92,11 @@ const fadeIn: Variants = {
 }
 
 /* Тёмная тема: 3 кадра — код меняется */
-const DARK_IMAGES  = ['/images/hero-1.jpg', '/images/hero-2.jpg', '/images/hero-3.jpg']
-/* Светлая тема: добавьте hero-w2.jpg / hero-w3.jpg когда будут готовы */
-const LIGHT_IMAGES = ['/images/hero-w1.jpg', '/images/hero-w2.jpg', '/images/hero-w3.jpg']
+const DARK_IMAGES      = ['/images/hero-1.jpg',     '/images/hero-2.jpg',     '/images/hero-3.jpg']
+const LIGHT_IMAGES     = ['/images/hero-w1.jpg',    '/images/hero-w2.jpg',    '/images/hero-w3.jpg']
+/* Мобильные портретные кропы */
+const DARK_MOB_IMAGES  = ['/images/hero-mob-1.png', '/images/hero-mob-2.png', '/images/hero-mob-3.png']
+const LIGHT_MOB_IMAGES = ['/images/hero-mob-w1.png','/images/hero-mob-w2.png','/images/hero-mob-w3.png']
 
 const SLIDE_INTERVAL = 2800  // мс между сменой кода на экране
 const FADE_DURATION  = 1.4   // секунды crossfade между кадрами
@@ -155,11 +157,29 @@ export function Hero() {
         {/* ── ЛЕВАЯ ПАНЕЛЬ (на мобиле — полная ширина) ── */}
         <div className="absolute inset-y-0 left-0 w-full sm:w-1/2">
 
-          {/* Mobile: статичный портретный кадр с монитором */}
-          <div
-            className="sm:hidden absolute inset-0"
-            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'auto 65%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
-          />
+          {/* Mobile: анимированные портретные кадры (тёмные) */}
+          {DARK_MOB_IMAGES.map((src, i) => (
+            <motion.div
+              key={`dm-${src}`}
+              className="sm:hidden absolute inset-0"
+              initial={false}
+              animate={{ opacity: isDark && i === leftIdx ? 1 : 0 }}
+              transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
+              style={{ backgroundImage: `url(${src})`, backgroundSize: 'auto 65%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
+            />
+          ))}
+
+          {/* Mobile: анимированные портретные кадры (светлые) */}
+          {LIGHT_MOB_IMAGES.map((src, i) => (
+            <motion.div
+              key={`lm-${src}`}
+              className="sm:hidden absolute inset-0"
+              initial={false}
+              animate={{ opacity: !isDark && i === leftIdx ? 1 : 0 }}
+              transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
+              style={{ backgroundImage: `url(${src})`, backgroundSize: 'auto 65%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
+            />
+          ))}
 
           {/* Desktop: анимированные кадры (скрыты на мобиле) */}
           {DARK_IMAGES.map((src, i) => (
@@ -173,7 +193,7 @@ export function Hero() {
             />
           ))}
 
-          {/* Светлые кадры */}
+          {/* Desktop: светлые кадры */}
           {LIGHT_IMAGES.map((src, i) => (
             <motion.div
               key={`l-${src}`}
