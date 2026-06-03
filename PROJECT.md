@@ -174,7 +174,7 @@ src/
 
 **IntersectionObserver** — один `ref` нельзя вешать на два элемента (desktop + `lg:hidden`).
 
-**Hero split background** — мобайл: правая панель скрыта, левая на полную ширину, вертикальный градиент.
+**Hero split background** — мобайл: правая панель скрыта. Мобильные кадры — отдельные портретные кропы (824×1527) из `public/images/hero-mob-1..3.png` (тёмные) и `hero-mob-w1..3.png` (светлые). Кропы лежат в `C:\000ALL\AL\CC\ea\img-arh\`, исходники `1sl-mod.png` + остальные. Crossfade идентичен десктопу через `DARK_MOB_IMAGES` / `LIGHT_MOB_IMAGES`.
 
 **next-themes color-scheme** — CSS-правило не пробивает нативные OS-контролы в Chrome/Windows.
 Надёжный способ: `document.documentElement.style.colorScheme = ...` в ThemeToggle.tsx.
@@ -183,52 +183,55 @@ src/
 
 ---
 
-## 7. Деплой на Vercel
+## 7. Деплой — Netlify (текущий)
+
+**Хостинг:** Netlify (free tier), автодеплой из GitHub `FitnessCoinFun/pr4web` ветка `main`.  
+**Домен:** pr4web.ru — A-запись `75.2.60.5` в Бегете, www → CNAME `fascinating-heliotrope-c8607b.netlify.app`.  
+**SSL:** Let's Encrypt, автоматически через Netlify.
+
+### Рабочий процесс деплоя
 
 ```bash
-# 1. Установить Vercel CLI
-npm i -g vercel
-
-# 2. Деплой (из папки проекта)
 cd C:\000ALL\AL\CC\ea\pr4web
-vercel
-
-# 3. Домен pr4web.ru → CNAME → cname.vercel-dns.com
-
-# 4. .env.local (после подключения Telegram Bot):
-TELEGRAM_BOT_TOKEN=...
-TELEGRAM_CHAT_ID=...
+# Внести правки в файлы
+git add .
+git commit -m "описание"
+git push
+# Netlify пересобирает автоматически (~1 мин)
 ```
 
-### Подключить форму через Telegram Bot
+### Переменные окружения (Netlify → Site configuration → Environment variables)
 
-```typescript
-// src/app/api/contact/route.ts — заменить console.log на:
-const text = `Заявка с pr4web.ru\n\nИмя: ${name}\nКонтакт: ${contact}\nБюджет: ${budget}\nЗадача: ${task}`
-await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text }),
-})
-```
+| Переменная | Значение |
+|------------|---------|
+| `TELEGRAM_BOT_TOKEN` | токен бота от @BotFather |
+| `TELEGRAM_CHAT_ID` | числовой ID чата (@pr_mast) |
+
+### Форма — Telegram уведомления
+
+Реализовано в `src/app/api/contact/route.ts`. Уведомление приходит в @pr_mast.  
+После изменения env-переменных нужно сделать **Trigger deploy** в Netlify.
 
 ---
 
 ## 8. TODO — оставшиеся задачи
 
-### Критично до запуска рекламы
+### Сделано (июнь 2026)
 
-- [ ] **Telegram Bot** — подключить отправку формы (BOT_TOKEN + CHAT_ID)
-- [ ] **Контакты** — заменить `@pr4web` и `hello@pr4web.ru` в Contact.tsx на реальные
+- [x] **Деплой** — Netlify, домен pr4web.ru, SSL
+- [x] **Telegram Bot** — уведомления на @pr_mast (TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID)
+- [x] **Контакты** — @pr_mast, pr4web@ya.ru
+- [x] **Яндекс.Метрика** — счётчик 109623397 в layout.tsx, событие `form_submit`
+- [x] **Политика конфиденциальности** — `/privacy` (152-ФЗ)
+- [x] **Мобильная версия** — портретные кропы Hero, кастомный выбор бюджета, скролл сертификатов пальцем
+
+### Осталось до запуска рекламы
+
 - [ ] **OG-image** — создать `public/og-image.jpg` (1200×630), добавить в layout.tsx
 - [ ] **Скриншоты cross-tracker** — сделать и положить в `public/cases/cross-tracker/`
-
-### Важно (первая неделя после запуска)
-
-- [ ] **Яндекс.Метрика** — добавить счётчик в layout.tsx
 - [ ] **Яндекс.Вебмастер** — подтвердить сайт, добавить sitemap.xml
-- [ ] **Канонические URL** — добавить `<link rel="canonical">` в layout.tsx
-- [ ] **hreflang** — добавить `<link rel="alternate" hreflang="ru">` если планируется EN-версия
+
+### Следующие волны
 
 ### Следующие волны визуальных улучшений
 
@@ -267,4 +270,4 @@ Footer: все ссылки в формате `/#anchor`.
 
 ---
 
-*Обновлён: июнь 2026*
+*Обновлён: июнь 2026 — деплой Netlify, Telegram, Метрика, мобильная анимация Hero*
