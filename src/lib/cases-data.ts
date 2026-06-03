@@ -208,7 +208,7 @@ export const cases: Case[] = [
   {
     slug:     'b2b-landing',
     tags:     ['Лендинг', 'B2B промышленность', 'AI-аналитика'],
-    date:     '05.2026',
+    date:     '2026',
     iconName: 'BarChart2',
     color:    'cyan',
     title:    'B2B лендинг: контрактное производство ЛКМ',
@@ -366,7 +366,7 @@ export const cases: Case[] = [
   {
     slug:     'cross-tracker',
     tags:     ['Аналитика', 'Атрибуция', 'Недвижимость'],
-    date:     '05.2026',
+    date:     '2026',
     iconName: 'Cpu',
     color:    'amber',
     title:    'Кросс-доменный трекер для девелопера',
@@ -433,7 +433,7 @@ export const cases: Case[] = [
   {
     slug:     'pr4web-landing',
     tags:     ['Лендинг', 'Next.js', 'Личный бренд'],
-    date:     '06.2026',
+    date:     '2026',
     iconName: 'Layout',
     color:    'rose',
     title:    'Лендинг личного бренда специалиста по рекламе',
@@ -511,7 +511,6 @@ export const cases: Case[] = [
     metrics: [
       { label: 'Платных инструментов', value: '0 ₽/мес', delta: 'нет Tilda, Webflow, Yagla',         positive: true },
       { label: 'Кадров hero',          value: '6',        delta: '3 тёмных + 3 светлых',              positive: true },
-      { label: 'Мобильный фон',        value: '120 КБ',   delta: 'было 1.8 МБ PNG',                  positive: true },
       { label: 'Уведомление о лиде',   value: 'Telegram', delta: 'приходит сразу при отправке формы', positive: true },
     ],
     result:

@@ -168,8 +168,8 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
                       <div className="text-xs font-semibold text-rose-400 mb-1">Стандартный подход</div>
                       <span style={{ color: 'var(--muted)' }}>{kp.old}</span>
                     </div>
-                    <div className="rounded-xl p-3 text-sm" style={{ backgroundColor: `${accent}0f`, border: `1px solid ${accent}30` }}>
-                      <div className="text-xs font-semibold mb-1" style={{ color: accent }}>Наше решение</div>
+                    <div className="rounded-xl p-3 text-sm" style={{ backgroundColor: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.25)' }}>
+                      <div className="text-xs font-semibold mb-1 text-emerald-400">Наше решение</div>
                       <span style={{ color: 'var(--page-fg)' }}>{kp.new}</span>
                     </div>
                   </div>

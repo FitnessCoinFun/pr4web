@@ -40,7 +40,7 @@ const cases = [
   {
     slug: 'b2b-landing',
     tags: ['Лендинг', 'B2B промышленность', 'AI-аналитика'],
-    date: '05.2026',
+    date: '2026',
     icon: BarChart2,
     color: 'cyan',
     title: 'B2B лендинг: контрактное производство ЛКМ',
@@ -49,7 +49,6 @@ const cases = [
     metrics: [
       { label: 'Конкурентов', value: '17', delta: 'с разбивкой по УТП', positive: true },
       { label: 'Вариантов лендинга', value: '2', delta: null, positive: true },
-      { label: 'Полей в форме', value: '3', delta: 'было 7', positive: true },
     ],
   },
   {
@@ -69,7 +68,7 @@ const cases = [
   {
     slug: 'cross-tracker',
     tags: ['Аналитика', 'Атрибуция', 'PHP'],
-    date: '05.2026',
+    date: '2026',
     icon: Cpu,
     color: 'amber',
     title: 'Кросс-доменный трекер для девелопера',
@@ -83,7 +82,7 @@ const cases = [
   {
     slug: 'pr4web-landing',
     tags: ['Лендинг', 'Next.js', 'Личный бренд'],
-    date: '06.2026',
+    date: '2026',
     icon: Layout,
     color: 'rose',
     title: 'Лендинг личного бренда специалиста по рекламе',
