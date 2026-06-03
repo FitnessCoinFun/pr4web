@@ -95,8 +95,8 @@ const fadeIn: Variants = {
 const DARK_IMAGES      = ['/images/hero-1.jpg',     '/images/hero-2.jpg',     '/images/hero-3.jpg']
 const LIGHT_IMAGES     = ['/images/hero-w1.jpg',    '/images/hero-w2.jpg',    '/images/hero-w3.jpg']
 /* Мобильные портретные кропы */
-const DARK_MOB_IMAGES  = ['/images/hero-mob-1.png', '/images/hero-mob-2.png', '/images/hero-mob-3.png']
-const LIGHT_MOB_IMAGES = ['/images/hero-mob-w1.png','/images/hero-mob-w2.png','/images/hero-mob-w3.png']
+const DARK_MOB_IMAGES  = ['/images/hero-mob-1.jpg', '/images/hero-mob-2.jpg', '/images/hero-mob-3.jpg']
+const LIGHT_MOB_IMAGES = ['/images/hero-mob-w1.jpg','/images/hero-mob-w2.jpg','/images/hero-mob-w3.jpg']
 
 const SLIDE_INTERVAL = 2800  // мс между сменой кода на экране
 const FADE_DURATION  = 1.4   // секунды crossfade между кадрами

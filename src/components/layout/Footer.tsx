@@ -42,11 +42,11 @@ export function Footer() {
           </nav>
 
           {/* Telegram */}
-          <a href="https://t.me/pr4web" target="_blank" rel="noopener noreferrer"
+          <a href="https://t.me/pr_mast" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm transition-colors"
             style={{ color: 'var(--muted)' }}>
             <MessageCircle size={15} />
-            @pr4web
+            @pr_mast
           </a>
         </div>
       </div>
