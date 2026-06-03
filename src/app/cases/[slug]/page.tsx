@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 /* Палитра акцентов */
 const accentMap: Record<string, string> = {
-  violet: '#8b5cf6', indigo: '#6366f1', cyan: '#06b6d4', green: '#10b981', amber: '#f59e0b',
+  violet: '#8b5cf6', indigo: '#6366f1', cyan: '#06b6d4', green: '#10b981', amber: '#f59e0b', rose: '#f43f5e',
 }
 
 export default async function CasePage({ params }: { params: Promise<{ slug: string }> }) {

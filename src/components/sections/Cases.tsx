@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView, type Variants, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, TrendingDown, BarChart2, Zap, Globe, Cpu } from 'lucide-react'
+import { ArrowUpRight, TrendingDown, BarChart2, Zap, Globe, Cpu, Layout } from 'lucide-react'
 import { openContactModal } from '@/components/ui/ContactModal'
 import { LetterReveal } from '@/components/ui/LetterReveal'
 
@@ -80,6 +80,20 @@ const cases = [
       { label: 'Заявок с атрибуцией', value: '100%', delta: 'было 0%', positive: true },
     ],
   },
+  {
+    slug: 'pr4web-landing',
+    tags: ['Лендинг', 'Next.js', 'Личный бренд'],
+    date: '06.2026',
+    icon: Layout,
+    color: 'rose',
+    title: 'Лендинг личного бренда специалиста по рекламе',
+    description:
+      'Next.js 16 + Framer Motion с нуля: анимированный hero с 6 кадрами crossfade, ROI-калькулятор, LetterReveal, Odometer. Telegram Bot API уведомляет о каждой заявке без сторонних SaaS.',
+    metrics: [
+      { label: 'Платных инструментов', value: '0 ₽/мес', delta: 'нет Tilda, Webflow, Yagla', positive: true },
+      { label: 'Кадров hero', value: '6', delta: '3 тёмных + 3 светлых', positive: true },
+    ],
+  },
 ]
 
 const allTags = ['Все', 'Трафик', 'Аналитика', 'AI-автоматизация', 'Аудит', 'B2B', 'Лендинг']
@@ -91,6 +105,7 @@ const colorMap: Record<string, { badge: string; icon: string; border: string; gl
   cyan:   { badge: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/20',       icon: 'text-cyan-400',   border: 'hover:border-cyan-500/30',   glow: 'rgba(6,182,212,0.08)' },
   green:  { badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20', icon: 'text-emerald-400', border: 'hover:border-emerald-500/30', glow: 'rgba(16,185,129,0.08)' },
   amber:  { badge: 'bg-amber-500/15 text-amber-400 border-amber-500/20',    icon: 'text-amber-400',  border: 'hover:border-amber-500/30',  glow: 'rgba(245,158,11,0.08)' },
+  rose:   { badge: 'bg-rose-500/15 text-rose-400 border-rose-500/20',       icon: 'text-rose-400',   border: 'hover:border-rose-500/30',   glow: 'rgba(244,63,94,0.08)' },
 }
 
 /* ── Анимации ── */
