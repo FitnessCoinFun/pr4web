@@ -155,11 +155,17 @@ export function Hero() {
         {/* ── ЛЕВАЯ ПАНЕЛЬ (на мобиле — полная ширина) ── */}
         <div className="absolute inset-y-0 left-0 w-full sm:w-1/2">
 
-          {/* Тёмные кадры (1-3): код меняется в цикле */}
+          {/* Mobile: статичный портретный кадр с монитором */}
+          <div
+            className="sm:hidden absolute inset-0"
+            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'cover', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
+          />
+
+          {/* Desktop: анимированные кадры (скрыты на мобиле) */}
           {DARK_IMAGES.map((src, i) => (
             <motion.div
               key={`d-${src}`}
-              className="absolute inset-0 hero-bg-left-img"
+              className="hidden sm:block absolute inset-0"
               initial={false}
               animate={{ opacity: isDark && i === leftIdx ? 1 : 0 }}
               transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
@@ -167,11 +173,11 @@ export function Hero() {
             />
           ))}
 
-          {/* Светлые кадры (добавляйте hero-w2.jpg, hero-w3.jpg) */}
+          {/* Светлые кадры */}
           {LIGHT_IMAGES.map((src, i) => (
             <motion.div
               key={`l-${src}`}
-              className="absolute inset-0 hero-bg-left-img"
+              className="hidden sm:block absolute inset-0"
               initial={false}
               animate={{ opacity: !isDark && i === lightSafe ? 1 : 0 }}
               transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
@@ -292,18 +298,19 @@ export function Hero() {
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 mb-16">
             <Button
               size="lg"
-              onClick={() => handleScroll('#cases')}
-              className="glow-accent group"
+              onClick={openContactModal}
+              className="glow-accent order-first sm:order-last"
             >
-              Смотреть кейсы
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              Обсудить задачу
             </Button>
             <Button
               size="lg"
               variant="secondary"
-              onClick={openContactModal}
+              onClick={() => handleScroll('#cases')}
+              className="group order-last sm:order-first"
             >
-              Обсудить задачу
+              Смотреть кейсы
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
 
