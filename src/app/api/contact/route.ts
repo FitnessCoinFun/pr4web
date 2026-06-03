@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const BUDGET_LABELS: Record<string, string> = {
+  '100-250':  '100–250 тыс ₽/мес',
+  '250-500':  '250–500 тыс ₽/мес',
+  '500-1000': '500 тыс – 1 млн ₽/мес',
+  'gt1000':   '1 млн ₽+ / мес',
+  'unknown':  'Ещё не определился',
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -9,22 +17,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: 'Заполните обязательные поля' }, { status: 400 })
     }
 
-    // TODO: подключить email-сервис. Варианты:
-    // 1. Resend (resend.com) — npm i resend, добавить RESEND_API_KEY в .env
-    // 2. Nodemailer — npm i nodemailer, добавить SMTP_* в .env
-    // 3. Telegram Bot API — отправлять уведомление в личку
-    //
-    // Пример Resend:
-    // import { Resend } from 'resend'
-    // const resend = new Resend(process.env.RESEND_API_KEY)
-    // await resend.emails.send({
-    //   from: 'site@pr4web.ru',
-    //   to: 'your@email.ru',
-    //   subject: `Заявка от ${name}`,
-    //   text: `Имя: ${name}\nКонтакт: ${contact}\nБюджет: ${budget}\nЗадача: ${task}`,
-    // })
+    const budgetLabel = BUDGET_LABELS[budget] ?? budget
+    const token  = process.env.TELEGRAM_BOT_TOKEN
+    const chatId = process.env.TELEGRAM_CHAT_ID
 
-    console.log('[contact form]', { name, contact, budget, task })
+    if (token && chatId) {
+      const text = [
+        '🔔 *Новая заявка с pr4web.ru*',
+        '',
+        `👤 *Имя:* ${name}`,
+        `📱 *Контакт:* ${contact}`,
+        `💰 *Бюджет:* ${budgetLabel}`,
+        task ? `📝 *Задача:* ${task}` : '',
+      ].filter(Boolean).join('\n')
+
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+      })
+    }
 
     return NextResponse.json({ ok: true })
   } catch {

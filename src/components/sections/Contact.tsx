@@ -27,8 +27,8 @@ const contacts = [
   {
     icon: MessageCircle,
     label: 'Telegram',
-    value: '@pr4web',   // ← замените на реальный ник
-    href: 'https://t.me/pr4web',
+    value: '@pr_mast',
+    href: 'https://t.me/pr_mast',
     color: '#229ED9',
   },
   {
@@ -41,8 +41,8 @@ const contacts = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@pr4web.ru',  // ← замените на реальный адрес
-    href: 'mailto:hello@pr4web.ru',
+    value: 'pr4web@ya.ru',
+    href: 'mailto:pr4web@ya.ru',
     color: '#6366f1',
   },
 ]

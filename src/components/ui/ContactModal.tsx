@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { X, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-/* Открыть модал из любого места: */
 export const openContactModal = () =>
   window.dispatchEvent(new Event('open-contact-modal'))
 
 const BUDGETS = [
-  { value: '100-250',  label: '100–250 тыс ₽ / мес' },
-  { value: '250-500',  label: '250–500 тыс ₽ / мес' },
-  { value: '500-1000', label: '500 тыс – 1 млн ₽ / мес' },
-  { value: 'gt1000',   label: '1 млн ₽+ / мес' },
+  { value: '100-250',  label: '100–250 тыс ₽/мес' },
+  { value: '250-500',  label: '250–500 тыс ₽/мес' },
+  { value: '500-1000', label: '500 тыс – 1 млн ₽/мес' },
+  { value: 'gt1000',   label: '1 млн ₽+/мес' },
   { value: 'unknown',  label: 'Ещё не определился' },
 ]
 
@@ -28,10 +28,15 @@ function ErrMsg({ msg }: { msg?: string }) {
   )
 }
 
+declare global {
+  interface Window { ym?: (id: number, action: string, goal: string) => void }
+}
+
 export function ContactModal() {
   const [open,   setOpen]   = useState(false)
   const [status, setStatus] = useState<'idle'|'loading'|'success'|'error'>('idle')
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>()
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>()
+  const selectedBudget = watch('budget')
 
   useEffect(() => {
     const show = () => { setOpen(true); setStatus('idle') }
@@ -39,7 +44,6 @@ export function ContactModal() {
     return () => window.removeEventListener('open-contact-modal', show)
   }, [])
 
-  /* закрытие по Escape */
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close()
@@ -57,8 +61,13 @@ export function ContactModal() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-      setStatus(res.ok ? 'success' : 'error')
-      if (res.ok) reset()
+      if (res.ok) {
+        setStatus('success')
+        reset()
+        window.ym?.(109623397, 'reachGoal', 'form_submit')
+      } else {
+        setStatus('error')
+      }
     } catch { setStatus('error') }
   }
 
@@ -66,14 +75,12 @@ export function ContactModal() {
     <AnimatePresence>
       {open && (
         <>
-          {/* Overlay */}
           <motion.div className="modal-overlay"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={close}
           />
 
-          {/* Окно */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1,    y: 0  }}
@@ -82,11 +89,10 @@ export function ContactModal() {
             className="fixed inset-0 z-[1001] flex items-center justify-center p-4 pointer-events-none"
           >
             <div
-              className="relative w-full max-w-md rounded-2xl p-7 pointer-events-auto"
+              className="relative w-full max-w-md rounded-2xl p-7 pointer-events-auto max-h-[90vh] overflow-y-auto"
               style={{ backgroundColor: 'var(--modal-bg)', border: '1px solid var(--card-border)', boxShadow: '0 24px 80px rgba(0,0,0,0.3)' }}
               onClick={e => e.stopPropagation()}
             >
-              {/* Закрыть */}
               <button onClick={close}
                 className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center transition-all cursor-pointer"
                 style={{ color: 'var(--muted)' }}>
@@ -127,15 +133,32 @@ export function ContactModal() {
                       <ErrMsg msg={errors.contact?.message} />
                     </div>
 
+                    {/* Бюджет — кастомные кнопки вместо select */}
                     <div>
-                      <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--page-fg)' }}>Рекламный бюджет *</label>
-                      <select {...register('budget', { required: 'Выберите бюджет' })}
-                        className="form-input text-sm appearance-none">
-                        <option value="">Выберите диапазон</option>
+                      <label className="block text-sm font-medium mb-2" style={{ color: 'var(--page-fg)' }}>Рекламный бюджет *</label>
+                      <input type="hidden" {...register('budget', { required: 'Выберите бюджет' })} />
+                      <div className="grid grid-cols-2 gap-2">
                         {BUDGETS.map(b => (
-                          <option key={b.value} value={b.value}>{b.label}</option>
+                          <button
+                            type="button"
+                            key={b.value}
+                            onClick={() => setValue('budget', b.value, { shouldValidate: true })}
+                            className={cn(
+                              'px-3 py-2.5 text-sm rounded-xl border text-left transition-all duration-150 cursor-pointer',
+                              selectedBudget === b.value
+                                ? 'border-indigo-500 bg-indigo-500/15 text-indigo-400 font-medium'
+                                : 'hover:border-indigo-500/40',
+                            )}
+                            style={selectedBudget === b.value ? {} : {
+                              borderColor: 'var(--card-border)',
+                              backgroundColor: 'var(--subtle)',
+                              color: 'var(--muted)',
+                            }}
+                          >
+                            {b.label}
+                          </button>
                         ))}
-                      </select>
+                      </div>
                       <ErrMsg msg={errors.budget?.message} />
                     </div>
 
@@ -148,7 +171,7 @@ export function ContactModal() {
 
                     {status === 'error' && (
                       <p className="text-sm text-rose-500 bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-3">
-                        Ошибка отправки. Напишите в Telegram.
+                        Ошибка отправки. Напишите напрямую: @pr_mast
                       </p>
                     )}
 
@@ -161,6 +184,13 @@ export function ContactModal() {
                         </svg>
                       ) : <><Send size={15} />Отправить заявку</>}
                     </button>
+
+                    <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
+                      Нажимая кнопку, вы соглашаетесь с{' '}
+                      <a href="/privacy" target="_blank" className="underline hover:text-indigo-400 transition-colors">
+                        политикой обработки данных
+                      </a>
+                    </p>
                   </form>
                 </>
               )}

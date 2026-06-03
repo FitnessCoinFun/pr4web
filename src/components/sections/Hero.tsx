@@ -158,7 +158,7 @@ export function Hero() {
           {/* Mobile: статичный портретный кадр с монитором */}
           <div
             className="sm:hidden absolute inset-0"
-            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'cover', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
+            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'auto 80%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
           />
 
           {/* Desktop: анимированные кадры (скрыты на мобиле) */}
