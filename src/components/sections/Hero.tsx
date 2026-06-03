@@ -158,7 +158,7 @@ export function Hero() {
           {/* Mobile: статичный портретный кадр с монитором */}
           <div
             className="sm:hidden absolute inset-0"
-            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'auto 80%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
+            style={{ backgroundImage: 'url(/images/hero-mob-1.png)', backgroundSize: 'auto 65%', backgroundPosition: 'center top', backgroundRepeat: 'no-repeat' }}
           />
 
           {/* Desktop: анимированные кадры (скрыты на мобиле) */}
@@ -238,7 +238,7 @@ export function Hero() {
       </div>
 
       {/* ── Контент ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
+      <div className="relative z-10 flex-1 flex flex-col justify-center max-w-6xl mx-auto px-6 pt-20 sm:pt-32 pb-20 w-full">
 
         <motion.div
           variants={container}

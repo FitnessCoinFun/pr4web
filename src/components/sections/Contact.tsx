@@ -185,7 +185,7 @@ export function Contact() {
               className="rounded-xl p-4"
               style={{ border: '1px solid var(--card-border)', backgroundColor: 'var(--subtle)' }}>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--muted)' }}>
-                Предпочтительный способ связи — Telegram. Форма справа тоже работает — приходит на почту сразу после отправки.
+                Предпочтительный способ связи — @pr_mast в Telegram. Форма справа тоже работает — уведомление приходит сразу.
               </p>
             </motion.div>
           </motion.div>
@@ -243,7 +243,7 @@ export function Contact() {
                   {status === 'error' && (
                     <div className="flex items-center gap-2 text-sm text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-3">
                       <AlertCircle size={16} />
-                      Ошибка отправки. Напишите напрямую в Telegram.
+                      Ошибка отправки. Напишите напрямую: @pr_mast
                     </div>
                   )}
 

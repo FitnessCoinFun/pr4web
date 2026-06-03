@@ -10,10 +10,10 @@ export const openContactModal = () =>
   window.dispatchEvent(new Event('open-contact-modal'))
 
 const BUDGETS = [
-  { value: '100-250',  label: '100–250 тыс ₽/мес' },
-  { value: '250-500',  label: '250–500 тыс ₽/мес' },
-  { value: '500-1000', label: '500 тыс – 1 млн ₽/мес' },
-  { value: 'gt1000',   label: '1 млн ₽+/мес' },
+  { value: '100-250',  label: '100–250 тыс ₽' },
+  { value: '250-500',  label: '250–500 тыс ₽' },
+  { value: '500-1000', label: '500 тыс – 1 млн ₽' },
+  { value: 'gt1000',   label: '1 млн ₽+' },
   { value: 'unknown',  label: 'Ещё не определился' },
 ]
 
