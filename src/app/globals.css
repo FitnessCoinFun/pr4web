@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+/* ─── Dark mode via .dark class (next-themes) ─── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Design tokens ─── */
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+
+  /* Brand colors */
+  --color-accent:       #6366f1;
+  --color-accent-light: #818cf8;
+  --color-accent-glow:  #6366f133;
+  --color-green:        #10b981;
+  --color-red:          #ef4444;
+
+  /* Dark theme surfaces */
+  --color-base:         #0a0a0f;
+  --color-surface:      #12121a;
+  --color-elevated:     #1a1a26;
+  --color-border:       #1e1e2e;
+  --color-border-light: #2a2a3e;
+
+  /* Text dark */
+  --color-text-primary:   #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted:     #475569;
+}
+
+/* ─── Theme CSS variables (switching via next-themes .dark/.light on <html>) ─── */
+html {
+  color-scheme:    light;   /* нативные контролы (select, scrollbar) в светлой теме */
+  --page-bg:       #fafafa;
+  --page-fg:       #0f172a;
+  --nav-bg:        rgba(250, 250, 250, 0.92);
+  --nav-border:    rgba(0, 0, 0, 0.07);
+  --card-bg:       rgba(0, 0, 0, 0.03);
+  --card-border:   rgba(0, 0, 0, 0.08);
+  --muted:         #64748b;
+  --subtle:        rgba(0, 0, 0, 0.05);
+  --orb-opacity:   0.08;
+  --grid-color:    rgba(0, 0, 0, 0.06);
+  /* Solid фон для модалов и оверлеев */
+  --modal-bg:      #ffffff;
+  /* Solid фон для select/option нативных элементов */
+  --input-bg:      #f1f5f9;
+}
+
+html.dark {
+  color-scheme:    dark;
+  --page-bg:       #0a0a0f;
+  --page-fg:       #f1f5f9;
+  --nav-bg:        rgba(10, 10, 15, 0.92);
+  --nav-border:    rgba(255, 255, 255, 0.06);
+  --card-bg:       rgba(255, 255, 255, 0.02);
+  --card-border:   rgba(255, 255, 255, 0.08);
+  --muted:         #94a3b8;
+  --subtle:        rgba(255, 255, 255, 0.04);
+  --orb-opacity:   0.18;
+  --modal-bg:      #1a1a26;
+  --input-bg:      #12121a;
+  --grid-color:    rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Base ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: #6366f133;
+  color: #818cf8;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--page-bg); }
+::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+/* ─── Theme-aware button variants ─── */
+.sec-btn {
+  background-color: var(--subtle);
+  border-color: var(--card-border);
+  color: var(--page-fg);
+}
+.sec-btn:hover {
+  background-color: var(--card-bg);
+  border-color: var(--border-light, var(--card-border));
+}
+.ghost-btn {
+  color: var(--muted);
+}
+.ghost-btn:hover {
+  color: var(--page-fg);
+  background-color: var(--subtle);
+}
+
+/* ─── Theme-aware section dividers ─── */
+.section-divider-top    { background: linear-gradient(to right, transparent, var(--card-border), transparent); height: 1px; }
+.section-divider-bottom { background: linear-gradient(to right, transparent, var(--card-border), transparent); height: 1px; }
+
+/* ─── Theme-aware form inputs ─── */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--card-border);
+  color: var(--page-fg);
+  transition: border-color 0.2s, background-color 0.2s;
+  outline: none;
+}
+.form-input::placeholder { color: var(--muted); opacity: 0.6; }
+.form-input:focus        { border-color: #6366f1; }
+
+/* Select: solid фон + color-scheme заставляет браузер рендерить нативный дропдаун в нужной теме */
+select.form-input               { background-color: var(--input-bg); cursor: pointer; color-scheme: light; }
+select.form-input option        { background-color: var(--input-bg); color: var(--page-fg); }
+html.dark select.form-input     { color-scheme: dark; }
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+
+/* ─── Marquee (12) ─── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Certificates scroll ─── */
+@keyframes cert-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Gradient border on hover (14) ─── */
+@property --border-angle {
+  syntax:        '<angle>';
+  initial-value: 0deg;
+  inherits:      false;
+}
+@keyframes border-rotate {
+  to { --border-angle: 360deg; }
+}
+.gradient-border {
+  position: relative;
+  transition: border-color 0.3s;
+}
+.gradient-border:hover {
+  animation: border-rotate 6s linear infinite;   /* 2× медленнее */
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    /* бледные пастельные тона вместо насыщенных */
+    conic-gradient(from var(--border-angle),
+      rgba(99,102,241,0.45),
+      rgba(139,92,246,0.35),
+      rgba(6,182,212,0.35),
+      rgba(16,185,129,0.35),
+      rgba(99,102,241,0.45)) border-box;
+}
+
+/* ─── Noise texture overlay (17) ─── */
+.noise-overlay { position: relative; }
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+.noise-overlay > * { position: relative; z-index: 1; }
+
+/* ─── Fluid typography (18) ─── */
+.fluid-h2 {
+  font-size:      clamp(1.5rem, 2.8vw + 0.6rem, 2.75rem);
+  line-height:    1.15;
+  font-weight:    800;
+  letter-spacing: -0.025em;
+}
+
+/* ─── Focus-visible (20) ─── */
+*:focus-visible {
+  outline:        2px solid #6366f1;
+  outline-offset: 3px;
+  border-radius:  6px;
+}
+
+/* ─── Background grid pattern ─── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Gradient text ─── */
+.text-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #818cf8 50%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow effects ─── */
+.glow-accent {
+  box-shadow: 0 0 20px #6366f133, 0 0 40px #6366f122;
+}
+.glow-accent:hover {
+  box-shadow: 0 0 30px #6366f155, 0 0 60px #6366f133;
+}
+
+/* ─── Orb animations ─── */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.95); }
+}
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-40px, 30px) scale(0.95); }
+  66%       { transform: translate(20px, -20px) scale(1.05); }
+}
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, -30px) scale(1.03); }
+}
+
+.orb-1 { animation: orb-float-1 12s ease-in-out infinite; }
+.orb-2 { animation: orb-float-2 16s ease-in-out infinite; }
+.orb-3 { animation: orb-float-3 20s ease-in-out infinite; }
+
+/* ─── Pulse dot ─── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ─── Bounce scroll indicator ─── */
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(6px); opacity: 0.5; }
+}
+.bounce-scroll { animation: bounce-scroll 2s ease-in-out infinite; }
