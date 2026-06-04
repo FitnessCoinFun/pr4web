@@ -141,7 +141,7 @@ export const cases: Case[] = [
     color:    'indigo',
     title:    'Предстартовый аудит сайта под платный трафик',
     subtitle: 'Три слоя аудита + Deep Research рынка — перед первым рублём в рекламе',
-    cover:    '/cases/site-audit/site-1.jpg',
+    cover:    '/cases/site-audit/audit-1.jpg',
     stack:    ['Claude', 'NotebookLM', 'WebFetch', 'HTML-анализ'],
     description:
       'Аудит интернет-магазина кожаных изделий ручной работы (сумки и рюкзаки Crazy Horse, 9 500–21 000 ₽) перед первым запуском Директа. Три независимых слоя: UX/конверсия, технический SEO, стратегия и рынок.',
