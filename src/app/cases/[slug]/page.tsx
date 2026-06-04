@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { getCaseBySlug, getAdjacentCase, cases } from '@/lib/cases-data'
 import { CaseLayout } from '@/components/cases/CaseLayout'
 import { CaseCta } from '@/components/cases/CaseCta'
+import { CaseFaq } from '@/components/cases/CaseFaq'
 import { CheckCircle2, TrendingUp, TrendingDown } from 'lucide-react'
 
 /* Статическая генерация всех slug */
@@ -240,6 +241,13 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
           )}
         </section>
       </article>
+
+      {/* ── FAQ ── */}
+      {c.faq && c.faq.length > 0 && (
+        <article className="max-w-4xl mx-auto px-6 pb-4">
+          <CaseFaq items={c.faq} accent={accent} />
+        </article>
+      )}
 
       {/* ── CTA ── */}
       <CaseCta next={next} />
