@@ -377,6 +377,7 @@ export const cases: Case[] = [
     color:    'amber',
     title:    'Кросс-доменный трекер для девелопера',
     subtitle: 'First-touch атрибуция без cookies через 6 сайтов',
+    cover:    '/cases/cross-tracker/journeys.jpg',
     stack:    ['PHP 8', 'MySQL', 'Canvas API + WebGL', 'Chart.js', 'ip-api.com', 'Beget shared'],
     description:
       'Девелопер загородной недвижимости (5 лендингов посёлков + корпсайт). Собственный инструмент: fingerprinting вместо cookies, uid на всех 6 сайтах, дашборд journeys.php показывает путь от рекламного клика до заявки.',
