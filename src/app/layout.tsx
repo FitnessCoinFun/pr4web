@@ -74,6 +74,44 @@ const personSchema = {
   knowsAbout:   ['Яндекс.Директ', 'Контекстная реклама', 'Веб-аналитика', 'Автоматизация маркетинга'],
   areaServed:   { '@type': 'Country', name: 'Россия' },
   priceRange:   '$$',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Услуги по интернет-рекламе',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Настройка Яндекс.Директ',
+          description: 'Аудит, настройка и оптимизация рекламных кампаний в Яндекс.Директ. Снижение CPL без роста бюджета.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Реклама ВКонтакте',
+          description: 'Настройка таргетированной рекламы ВКонтакте для B2B и e-commerce.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Аналитика и трекинг',
+          description: 'Сквозная аналитика, кросс-доменный трекинг, атрибуция конверсий по всей воронке.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Аудит рекламных кампаний',
+          description: 'Технический, структурный и стратегический аудит перед запуском или при высоком CPL.',
+        },
+      },
+    ],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

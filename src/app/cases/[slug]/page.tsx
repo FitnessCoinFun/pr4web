@@ -51,8 +51,41 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
   const next   = getAdjacentCase(slug)
   const accent = accentMap[c.color] ?? '#6366f1'
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: c.title,
+    description: c.description,
+    datePublished: c.datePublished,
+    author: {
+      '@type': 'Person',
+      name: 'ИП Еремин АВ',
+      url: 'https://pr4web.ru',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'PR4WEB',
+      url: 'https://pr4web.ru',
+    },
+    mainEntityOfPage: `https://pr4web.ru/cases/${c.slug}`,
+    keywords: c.tags.join(', '),
+    ...(c.cover ? { image: `https://pr4web.ru${c.cover}` } : {}),
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://pr4web.ru' },
+      { '@type': 'ListItem', position: 2, name: 'Кейсы',   item: 'https://pr4web.ru/cases' },
+      { '@type': 'ListItem', position: 3, name: c.title,   item: `https://pr4web.ru/cases/${c.slug}` },
+    ],
+  }
+
   return (
     <CaseLayout title={c.title}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <article className="max-w-4xl mx-auto px-6 pb-4">
 
         {/* ── HERO ── */}

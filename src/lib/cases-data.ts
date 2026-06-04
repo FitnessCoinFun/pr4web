@@ -14,9 +14,10 @@ export interface CaseStep {
 }
 
 export interface Case {
-  slug:        string
-  tags:        string[]
-  date:        string
+  slug:          string
+  tags:          string[]
+  date:          string
+  datePublished: string  // ISO 8601 для Article schema
   iconName:    string
   color:       string
   title:       string
@@ -40,9 +41,10 @@ export const cases: Case[] = [
   /*  k1 — SMM-автоматизация                                             */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'smm-automation',
-    tags:     ['AI-автоматизация', 'Спортивный блог'],
-    date:     '2026',
+    slug:          'smm-automation',
+    tags:          ['AI-автоматизация', 'Спортивный блог'],
+    date:          '2026',
+    datePublished: '2026-06-01',
     iconName: 'Zap',
     color:    'violet',
     title:    'Автоматизация контент-продакшна для соцсетей',
@@ -131,9 +133,10 @@ export const cases: Case[] = [
   /*  k2 — Аудит сайта (кожаные изделия)                                */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'site-audit',
-    tags:     ['Аудит', 'Premium e-commerce', 'AI-аналитика'],
-    date:     '2026',
+    slug:          'site-audit',
+    tags:          ['Аудит', 'Premium e-commerce', 'AI-аналитика'],
+    date:          '2026',
+    datePublished: '2026-06-01',
     iconName: 'TrendingDown',
     color:    'indigo',
     title:    'Предстартовый аудит сайта под платный трафик',
@@ -206,9 +209,10 @@ export const cases: Case[] = [
   /*  k3 — B2B лендинг (промышленная химия)                             */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'b2b-landing',
-    tags:     ['Лендинг', 'B2B промышленность', 'AI-аналитика'],
-    date:     '2026',
+    slug:          'b2b-landing',
+    tags:          ['Лендинг', 'B2B промышленность', 'AI-аналитика'],
+    date:          '2026',
+    datePublished: '2026-05-15',
     iconName: 'BarChart2',
     color:    'cyan',
     title:    'B2B лендинг: контрактное производство ЛКМ',
@@ -283,9 +287,10 @@ export const cases: Case[] = [
   /*  k4 — Лидогенерация B2B (подбор персонала)                        */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'b2b-leads',
-    tags:     ['Трафик', 'B2B', 'Директ'],
-    date:     '2024',
+    slug:          'b2b-leads',
+    tags:          ['Трафик', 'B2B', 'Директ'],
+    date:          '2024',
+    datePublished: '2024-10-01',
     iconName: 'Globe',
     color:    'green',
     title:    'Лидогенерация B2B: подбор внештатного персонала',
@@ -364,9 +369,10 @@ export const cases: Case[] = [
   /*  k5 — Кросс-доменный трекер                                        */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'cross-tracker',
-    tags:     ['Аналитика', 'Атрибуция', 'Недвижимость'],
-    date:     '2026',
+    slug:          'cross-tracker',
+    tags:          ['Аналитика', 'Атрибуция', 'Недвижимость'],
+    date:          '2026',
+    datePublished: '2026-05-01',
     iconName: 'Cpu',
     color:    'amber',
     title:    'Кросс-доменный трекер для девелопера',
@@ -433,9 +439,10 @@ export const cases: Case[] = [
   /*  k6 — Лендинг личного бренда pr4web.ru                             */
   /* ─────────────────────────────────────────────────────────────────── */
   {
-    slug:     'pr4web-landing',
-    tags:     ['Лендинг', 'Next.js', 'Личный бренд'],
-    date:     '2026',
+    slug:          'pr4web-landing',
+    tags:          ['Лендинг', 'Next.js', 'Личный бренд'],
+    date:          '2026',
+    datePublished: '2026-06-01',
     iconName: 'Layout',
     color:    'rose',
     title:    'Лендинг личного бренда специалиста по рекламе',

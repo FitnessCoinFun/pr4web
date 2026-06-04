@@ -7,6 +7,7 @@ import { Process } from '@/components/sections/Process'
 import { AiStack } from '@/components/sections/AiStack'
 import { Tools } from '@/components/sections/Tools'
 import { Certificates } from '@/components/sections/Certificates'
+import { Faq } from '@/components/sections/Faq'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/layout/Footer'
 import { ContactModal } from '@/components/ui/ContactModal'
@@ -32,6 +33,7 @@ export default function Home() {
         <AiStack />
         <Tools />
         <Certificates />
+        <Faq />
         <Contact />
       </main>
       <Footer />

@@ -19,11 +19,31 @@ const colorMap: Record<string, { badge: string; accent: string }> = {
   cyan:   { badge: 'bg-cyan-500/15   text-cyan-400   border-cyan-500/20',   accent: '#06b6d4' },
   green:  { badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20', accent: '#10b981' },
   amber:  { badge: 'bg-amber-500/15  text-amber-400  border-amber-500/20',  accent: '#f59e0b' },
+  rose:   { badge: 'bg-rose-500/15   text-rose-400   border-rose-500/20',   accent: '#f43f5e' },
+}
+
+const caseListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Кейсы PR4WEB — результаты рекламных кампаний',
+  description: 'Задокументированные кейсы по настройке Яндекс.Директ и ВКонтакте с конкретными цифрами',
+  numberOfItems: cases.length,
+  itemListElement: cases.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.title,
+    url: `https://pr4web.ru/cases/${c.slug}`,
+    description: c.description,
+  })),
 }
 
 export default function CasesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseListSchema) }}
+      />
       <ContactModal />
       <div className="min-h-screen" style={{ backgroundColor: 'var(--page-bg)', color: 'var(--page-fg)' }}>
         <Navigation />
